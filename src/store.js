@@ -1,10 +1,32 @@
-import {createStore} from "redux";
+import { createStore, applyMiddleware } from "redux";
+import thunk from "redux-thunk";
 
 const reducer = (state, action) => {
-    return state;
+    switch (action.type) {
+        case "FIND_PLAYERS":
+            return {
+                ...state,
+                players: action.players
+            }
+
+        case "SET_FILTERS":
+            return {
+                ...state,
+                filters: action.filters
+            }
+            
+        default: return state;
+    }
+
 }
 
-export default createStore(reducer, {
+const initialState = {
+    filters: {
+        position: "",
+        age: "",
+        name: ""
+    },
+    players: [],
     positions: [
         'Attacking Midfield',
         'Central Midfield',
@@ -17,4 +39,10 @@ export default createStore(reducer, {
         'Left-Back',
         'Right-Back'
     ]
-});
+};
+
+export default createStore(
+    reducer,
+    initialState,
+    applyMiddleware(thunk)
+);
