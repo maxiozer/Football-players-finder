@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import {
@@ -13,19 +13,15 @@ const styles = theme => ({
     },
 });
 
-class Header extends Component {
-    render() {
-        const { classes } = this.props;
-        return (
-            <AppBar position="static">
-                <Toolbar>
-                    <Typography variant="title" color="inherit" className={classes.flex}>
-                        Site Title
-            </Typography>
-                </Toolbar>
-            </AppBar>
-        );
-    }
+function Header(props) {
+    const { classes } = props;
+    return (
+        <AppBar position="static">
+            <Toolbar>
+                <Typography variant="title" color="inherit" className={classes.flex}>React Test</Typography>
+            </Toolbar>
+        </AppBar>
+    );
 
 }
 

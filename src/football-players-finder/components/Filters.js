@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { connect } from "react-redux";
 import { createSelector } from 'reselect'
-import { setFilters } from "../../actionCreators";
+import { setFilters } from "../actionCreators";
+import { ValidatorForm, TextValidator, email } from "react-material-ui-form-validator";
 
 import {
   Button,
@@ -15,9 +16,6 @@ import {
 } from '@material-ui/core';
 
 const styles = theme => ({
-  flex: {
-    flex: 1,
-  },
   container: {
     display: 'flex',
     flexWrap: 'wrap',
@@ -26,9 +24,6 @@ const styles = theme => ({
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
     width: 200,
-  },
-  grid: {
-    marginTop: 2
   },
   formControl: {
     margin: theme.spacing.unit,
@@ -42,32 +37,36 @@ class Filters extends Component {
     super();
 
     this.state = {
-        age: "",
-        name: "",
-        position: "",
+      age: "",
+      name: "",
+      position: "",
     }
 
   }
 
   handleChange = event => {
     this.setState({
-        [event.target.name]: event.target.value
+      [event.target.name]: event.target.value
     });
   };
 
   render() {
     const { classes } = this.props;
     return (
-      <form className={classes.container} noValidate autoComplete="off">
+      <ValidatorForm
+        className={classes.container}
+        ref="form"
+        onSubmit={(e) => { e.preventDefault(); this.props.setFilters(this.state) }}
+      >
         <FormControl className={classes.formControl}>
-          <TextField
-            id="name-filter"
-            name="name"
+          <TextValidator
             label="Player Name"
-            type="string"
-            value={this.state.name}
-            className={classes.textField}
             onChange={this.handleChange}
+            name="name"
+            value={this.state.name}
+            validators={['matchRegexp:^[A-Za-z]+$']}
+            className={classes.textField}
+            errorMessages={['This field only accept characters']}
           />
         </FormControl>
         <FormControl className={classes.formControl}>
@@ -84,28 +83,28 @@ class Filters extends Component {
               <em>None</em>
             </MenuItem>
             {this.props.positions.map(x =>
-              <MenuItem value={x}>{x}</MenuItem>
+              <MenuItem key={x} value={x}>{x}</MenuItem>
             )}
           </Select>
         </FormControl>
         <FormControl className={classes.formControl}>
-          <TextField
-            required
-            id="age-filter"
-            name="age"
-            label="Age"
-            type="number"
-            value={this.state.age}
-            className={classes.textField}
-            onChange={this.handleChange}
-          />
+          <TextValidator
+              label="Age"
+              onChange={this.handleChange}
+              name="age"
+              type="number"
+              value={this.state.age}
+              validators={['minNumber:18','maxNumber:40']}
+              className={classes.textField}
+              errorMessages={['The minimum age is 18', 'The minimum age is 40']}
+            />
         </FormControl>
         <FormControl className={classes.formControl}>
-          <Button variant="contained" color="primary" onClick={() => { this.props.setFilters(this.state) }} >
+          <Button variant="contained" color="primary" type="submit" >
             Search
-                  </Button>
+        </Button>
         </FormControl>
-      </form>
+      </ValidatorForm>
     );
   }
 
@@ -116,7 +115,7 @@ Filters.propTypes = {
 };
 
 const getPositions = createSelector(
-  state => state.positions,
+  state => state.players.positions,
   (position) => { return position }
 );
 

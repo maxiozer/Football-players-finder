@@ -1,8 +1,8 @@
-import React, {  } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { connect } from "react-redux";
-import { findPlayers } from "../actionCreators";
+import { findPlayers } from "./actionCreators";
 import PlayersTable from "./components/PlayersTable";
 import Filters from "./components/Filters";
 import Header from "./components/Header";
@@ -21,10 +21,10 @@ const styles = theme => ({
   },
 });
 
-const FootBallPlayerFinder = ({dispatch}) => {
-  dispatch(findPlayers());
-  const classes = styles;
-  
+const FootBallPlayerFinder = (props) => {
+  const { classes, findPlayers } = props;
+  findPlayers();
+
   return (
     <div className={classes.root}>
       <Header />
@@ -45,5 +45,12 @@ FootBallPlayerFinder.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
+const mapDispatchToProps = dispatch => {
+  return {
+    findPlayers() {
+      dispatch(findPlayers());
+    },
+  }
+}
 
-export default connect()(withStyles(styles)(FootBallPlayerFinder));
+export default connect(null, mapDispatchToProps)(withStyles(styles)(FootBallPlayerFinder));

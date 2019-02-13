@@ -14,7 +14,7 @@ const findPlayers = () => {
                 })
                 dispatch({
                     type: "FIND_PLAYERS",
-                    players: res
+                    list: res
                 })
             })
     }
