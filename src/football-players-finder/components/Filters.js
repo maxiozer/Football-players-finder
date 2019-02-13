@@ -50,13 +50,18 @@ class Filters extends Component {
     });
   };
 
+  handleSubmit = event =>{
+    event.preventDefault(); 
+    this.props.setFilters(this.state);
+  }
+
   render() {
     const { classes } = this.props;
     return (
       <ValidatorForm
         className={classes.container}
         ref="form"
-        onSubmit={(e) => { e.preventDefault(); this.props.setFilters(this.state) }}
+        onSubmit={this.handleSubmit}
       >
         <FormControl className={classes.formControl}>
           <TextValidator
