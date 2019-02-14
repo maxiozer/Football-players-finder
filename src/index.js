@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import FootBallPlayersFinder from './football-players-finder';
+import {FootBallPlayersFinder} from './modules/football-players-finder/pages';
 import * as serviceWorker from './serviceWorker';
 import 'typeface-roboto';
 import store from "./store";

@@ -2,8 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { connect } from "react-redux";
-import { findPlayers } from "./actionCreators";
-import { PlayersTable, Filters, Header } from "./components"
+import { findPlayers } from "../actionCreators";
+import { PlayersTable, Filters } from "../components";
+import {Header} from "../../core/components";
 
 import {
   Typography,

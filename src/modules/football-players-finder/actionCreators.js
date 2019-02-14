@@ -1,3 +1,4 @@
+import * as actionTypes from './actionTypes';
 import axios from "axios";
 
 const findPlayers = () => {
@@ -13,7 +14,7 @@ const findPlayers = () => {
                     }
                 })
                 dispatch({
-                    type: "FIND_PLAYERS",
+                    type: actionTypes.FIND_PLAYERS,
                     list: res
                 })
             })
@@ -23,7 +24,7 @@ const findPlayers = () => {
 const setFilters = (name, age, position) => {
     return dispatch => {
         dispatch({
-            type: "SET_FILTERS",
+            type: actionTypes.SET_FILTERS,
             filters: {
                 name,
                 age,

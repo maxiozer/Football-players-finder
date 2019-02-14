@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { connect } from "react-redux";
-import { createSelector } from 'reselect'
+import { getPositions } from '../selectors';
 import { setFilters } from "../actionCreators";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 
@@ -118,10 +118,6 @@ Filters.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-const getPositions = createSelector(
-  state => state.players.positions,
-  (position) => { return position }
-);
 
 const mapStateToProps = state => {
   return {

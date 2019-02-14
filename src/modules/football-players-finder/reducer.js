@@ -1,3 +1,4 @@
+import * as actionTypes from "./actionTypes";
 
 const initialState = {
     filters: {
@@ -21,15 +22,14 @@ const initialState = {
 }
 
 const players = (state = initialState, action) => {
-
     switch (action.type) {
-        case "FIND_PLAYERS":
+        case actionTypes.FIND_PLAYERS:
             return {
                 ...state,
                 list: action.list
             }
             
-        case "SET_FILTERS":
+        case actionTypes.SET_FILTERS:
             return {
                 ...state,
                 filters: action.filters
@@ -37,9 +37,7 @@ const players = (state = initialState, action) => {
 
 
         default: return state;
-
     }
-
 }
 
 export default players;

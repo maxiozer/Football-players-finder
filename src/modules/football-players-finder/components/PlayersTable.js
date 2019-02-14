@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { connect } from "react-redux";
-import { createSelector } from 'reselect'
+import { getPlayers } from '../selectors';
 
 import {
   Table,
@@ -45,21 +45,6 @@ const PlayersTable = (props) => {
 PlayersTable.propTypes = {
   classes: PropTypes.object.isRequired,
 };
-
-const getPlayers = createSelector(
-  (state) => state.players.list,
-  (state) => state.players.filters,
-  (players, filters) => {
-    const response = players.filter(player => {
-      return !filters.name || player.name === filters.name
-    }).filter(player => {
-      return !filters.age || parseInt(player.age) === parseInt(filters.age)
-    }).filter(player => {
-      return !filters.position || player.position === filters.position
-    });
-    return response;
-  }
-);
 
 const mapStateToProps = (state) => {
   return {

@@ -1,8 +1,8 @@
 import { createStore, applyMiddleware, combineReducers } from "redux";
 import thunk from "redux-thunk";
-import players from "./football-players-finder/reducer";
+import players from "./modules/football-players-finder";
 
 export default createStore(
-    combineReducers({ players }),
+    combineReducers({ players: players.reducer }),
     applyMiddleware(thunk)
 );
