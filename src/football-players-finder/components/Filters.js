@@ -4,11 +4,10 @@ import { withStyles } from '@material-ui/core/styles';
 import { connect } from "react-redux";
 import { createSelector } from 'reselect'
 import { setFilters } from "../actionCreators";
-import { ValidatorForm, TextValidator, email } from "react-material-ui-form-validator";
+import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 
 import {
   Button,
-  TextField,
   Select,
   MenuItem,
   InputLabel,

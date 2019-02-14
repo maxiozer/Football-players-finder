@@ -3,9 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { connect } from "react-redux";
 import { findPlayers } from "./actionCreators";
-import PlayersTable from "./components/PlayersTable";
-import Filters from "./components/Filters";
-import Header from "./components/Header";
+import { PlayersTable, Filters, Header } from "./components"
 
 import {
   Typography,
@@ -52,5 +50,6 @@ const mapDispatchToProps = dispatch => {
     },
   }
 }
+
 
 export default connect(null, mapDispatchToProps)(withStyles(styles)(FootBallPlayerFinder));
