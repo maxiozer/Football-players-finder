@@ -61,12 +61,14 @@ class Filters extends Component {
         className={classes.container}
         ref="form"
         onSubmit={this.handleSubmit}
+        id="filter-form"
       >
         <FormControl className={classes.formControl}>
           <TextValidator
             label="Player Name"
             onChange={this.handleChange}
             name="name"
+            id="name"
             value={this.state.name}
             validators={['matchRegexp:^[A-Za-z]+$']}
             className={classes.textField}
@@ -96,6 +98,7 @@ class Filters extends Component {
               label="Age"
               onChange={this.handleChange}
               name="age"
+              id="age"
               type="number"
               value={this.state.age}
               validators={['minNumber:18','maxNumber:40']}

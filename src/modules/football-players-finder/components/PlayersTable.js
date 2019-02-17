@@ -18,7 +18,7 @@ const styles = theme => ({
 const PlayersTable = (props) => {
   const { classes } = props;
   return (
-    <Table className={classes.table}>
+    <Table id="players-table" className={classes.table}>
       <TableHead>
         <TableRow>
           <TableCell>Player</TableCell>
